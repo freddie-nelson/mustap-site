@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
+$screen-medium: 1412px;
+$screen-tablet: 750px;
+$screen-mobile: 550px;
+
+:root {
+  --side-padding: 10vw;
+  
+  // DARK
+  --color-title: #FFFFFF;
+  --color-para: #ffffffb3;
+  --color-accent: #FB275A;
+  --color-bg: #111315;
+  
+  // LIGHT
+  // --color-title: #080A0D;
+  // --color-para: #080a0dd0;
+  // --color-accent: #C5C1B8;
+  // --color-bg: #dae1e4;
+
+  --font: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --font-size-title: 2.8rem;
+  --font-weight-title: 700;
+
+  --font-size-para: 1.15rem;
+  --font-weight-para: 500;
+
+  @media screen and (max-width: $screen-tablet) {
+    --side-padding: 4vw;
+  }
+
+  @media screen and (max-width: $screen-mobile) {
+    --font-size-title: 1.65rem;
+    --font-size-para: .9rem;
+    --side-padding: 2vw;
+  }
+}
+
+* {
+  font-family: var(--font);
+  margin: 0;
+  padding: 0;
+
+  &::selection {
+    background-color: var(--color-accent);
+  }
+}
+
+body {
+  background-color: var(--color-bg);  
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+
+
+  @media screen and (max-width: $screen-medium) {
+    .nav {
+      position: unset;
+    }
+  }
+
+  @media screen and (max-width: $screen-mobile) {
+    
+  }
+}
+
+// ELEMENT DEFAULT STYLES
+h1 {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-title);
+  color: var(--color-title);
+  position: relative;
+
+  &::after {
+    content: "";
+    background-color: var(--color-accent);
+    width: 35%;
+    height: .5rem;
+    position: absolute;
+    bottom: -.5rem;
+    left: 0;
+    border-radius: .25rem;
+  }
+}
+
+p {
+  font-size: var(--font-size-para);
+  font-weight: var(--font-weight-para);
+  color: var(--color-para);
+}
+
+a {
+  color: var(--color-title);
+}
+
+// BUTTONS
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12rem;
+  padding: .8rem 0;
+  border: none;
+  border-radius: .5rem;
+  background-color: var(--color-accent);
+  color: var(--color-title);
+  font-weight: var(--font-weight-title);
+  font-size: var(--font-size-para);
+  transition: filter .3s ease;
+
+  &:hover {
+    filter: hue-rotate(-20deg);
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: solid 2px var(--color-accent);
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: var(--color-accent);
+    }
+  }
+}
+
+// NAVBAR
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem var(--side-padding);
+  background-color: var(--color-bg);
+  z-index: 10;
+
+  &__logo {
+    color: var(--color-title);
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-title);
+  }
+}
+
+// MAIN
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  padding: 0 var(--side-padding);
+
+  @media screen and (max-width: $screen-medium) {
+    height: calc(100% - 100px);
+
+    &__images {
+      flex-grow: 1;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    &__text {
+      flex-grow: 1;
+      min-width: 100% !important;
+    }
+
+    &__buttons {
+      .button {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  @media screen and (max-width: $screen-mobile) {
+    &__images {
+      max-width: 90%;
+    }
+  }
+
+  &__text {
+    width: 50%;
+    padding-right: 1rem;
+    min-width: 565px;
+  }
+
+  &__features {
+    margin-top: 2.2rem;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    margin-top: .6rem;
+  }
+
+  &__icon {
+    color: var(--color-title);
+    font-size: 1.25rem;
+    margin-right: .5rem;
+  }
+
+  &__buttons {
+    margin-top: 2rem;
+    display: flex;
+
+    .button:nth-of-type(1) {
+      margin-right: 2rem;
+    }
+  }
+
+  &__images {
+    width: 50%;
+    position: relative;
+  }
+
+  &__image {
+    -webkit-user-drag: none;
+    user-select: none;
+
+    &:nth-of-type(1) {
+      position: absolute;
+      top: 0;
+    }
+
+    &:nth-of-type(2) {
+      margin-top: .7rem;
+      margin-left: .7rem;
+    }
+  }
+}
+
+// LOAD ANIMATIONS
+.slide-in-left {
+  animation: slide-in-left .8s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translate(-20rem);
+  }
+}
+
+.slide-in-right {
+  animation: slide-in-right .8s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translate(20rem);
+  }
+}
